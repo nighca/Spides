@@ -37,7 +37,7 @@ function get_rtn_pos(x1, y1, o_x, o_y, rotation){
 	return pos;
 }
 
-Theshow = function(_xvy, _window_dom, _world_dom, _slides_dom, _unit, _duration){
+Theview = function(_xvy, _window_dom, _world_dom, _slides_dom, _unit, _duration){
 	var xvy = _xvy;
 	var window_dom = _window_dom;
 	var world_dom = _world_dom;
