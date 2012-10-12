@@ -1,13 +1,3 @@
-//def
-var xvy = 4/3;
-var window_dom = $('window');
-var world_dom = $('world');
-var slides_dom = $('slide');
-var unit = 30;
-var duration = 800;
-
-var the_show = new Theshow(xvy, window_dom,  world_dom, slides_dom, unit, duration);
-
 var hashWatcher = function() {
     var timer, last;
     return {
@@ -40,42 +30,43 @@ function get_index(){
 	}
 }
 
-function forward(the_show){
+function forward(the_view){
 	var index = get_index();
-	if(++index > the_show.world.slides_num){
+	if(++index > the_view.world.slides_num){
 		index = 1;
 	}
 	window.location.hash = index;
 }
 
-function backward(the_show){
+function backward(the_view){
 	var index = get_index();
 	if(--index <= 0){
-		index = the_show.world.slides_num;
+		index = the_view.world.slides_num;
 	}
 	window.location.hash = index;
 }
 
 $(function(){
+	var the_view = new Theview(xvy, window_dom,  world_dom, slides_dom, unit, duration);
+
 	$(window).resize(function(){
-		the_show.reset_size();
+		the_view.reset_size();
 	});
 
 	hashWatcher.register(function(){
 		var index = get_index();
-		the_show.show(index);
+		the_view.show(index);
 	});
 
-	$('body').on('click', function(){
-		forward(the_show);
+	$(document).on('click', function(){
+		forward(the_view);
 	});
 
-	
 	$(document).keyup(function(event) {
 		if ( event.which == 37 || event.which == 38 ) {
-			backward(the_show);
+			backward(the_view);
 		}else if ( event.which == 39 || event.which == 40 ) {
-			forward(the_show);
+			forward(the_view);
 		}
 	});
 });
