@@ -17,7 +17,7 @@ Thewindow = function(_window_dom){
 	this.init = function(){
 		this.reset_size();
 
-		window_dom.css({"padding-top":this.padding_length});
+		window_dom.css({"padding":this.padding_length});
 	};
 
 	this.init();

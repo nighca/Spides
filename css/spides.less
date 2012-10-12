@@ -2,6 +2,8 @@
 
 @font_color: #333;
 
+@tip_font_color: #858585;
+
 .title(@font-size: 4em){
 	display: block;
 	width: 100%;
@@ -18,13 +20,14 @@
 .tip{
 	display: inline-block;
 	width: 100%;
-	color: #858585;
+	color: @tip_font_color;
 	text-align: right;
+	text-indent: 2em;
 }
 
 .paragraph{
 	display: block;
-	margin-top: 1em;
+	margin: 1em 2em 0;
 
 	strong{
 		margin: 0 1em;
