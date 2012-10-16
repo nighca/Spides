@@ -13,10 +13,22 @@
       <% } %></h4>
     	<div class="main_content">
     		<h1>Spide Creator<a class="no_style right link" href="/public">Public Spides</a></h1>
-        <h4>Please input the key to get <strong><%= name %></strong></h4>
+        <% if (name) { %>
+          <h4>Please input theKey to get <strong><%= name %></strong></h4>
+        <% } else { %>
+          <h4>Please input id and theKey to get your Spide.</h4>
+        <% } %>
 		    <form action="/show/<%= id %>" method="post" class="typical_form">
+          <div class="input_block">
+            <% if (name) { %>
+              <input type="hidden" name="id" class="input_large" placeholder="id of the Spide" value="<%= id %>" />
+            <% } else { %>
+              <input type="text" name="id" class="input_large" placeholder="id of the Spide" />
+            <% } %>
+            
+          </div>
 		    	<div class="input_block">
-				    <input type="password" name="theKey" class="input_large" placeholder="input the key to get the slide" />
+				    <input type="password" name="theKey" class="input_large" placeholder="the key to get the Spide" />
 				    <input type="submit" value="Submit" />
 				</div>
 		    </form>

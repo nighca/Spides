@@ -36,8 +36,11 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/docs', routes.docs);
 app.get('/public', spide.list);
+
+app.get('/show/', spide.verify);
 app.get('/show/:id', spide.verify);
 app.post('/show/:id', spide.show);
+
 app.get('/create', spide.new);
 app.post('/create', spide.create);
 

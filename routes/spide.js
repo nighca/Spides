@@ -20,22 +20,25 @@ exports.list = function(req, res){
 };
 
 exports.verify = function(req, res){
-	var id = req.params.id;
+	if(!req.params.id){
+		res.render('verify', { title: 'Verify - Spides', id: "", name: null});
+	}else{
+		var id = req.params.id;
+		var callback = {
+			fail: function(err){
+				res.send(err);
+			},
+			succeed: function(name){
+				res.render('verify', { title: 'Verify - Spides', id: id, name: name});
+			}
+		};
 
-	var callback = {
-		fail: function(err){
-			res.send(err);
-		},
-		succeed: function(name){
-			res.render('verify', { title: 'Verify - Spides', id: id, name: name});
-		}
-	};
-
-	db.get_name(id, callback);
+		db.get_name(id, callback);
+	}
 };
 
 exports.show = function(req, res){
-	var id = req.params.id;
+	var id = req.body.id;
 
 	var theKey = req.body.theKey;
 
