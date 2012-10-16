@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title><%= title %></title>
+    	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    	<link rel='stylesheet' href='/stylesheets/global.css' />
+
+        <script type="text/javascript" src="/javascripts/add-on/jquery-1.7.2.min.js"></script>
+    </head>
+
+    <body class="public">
+        <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
+          <%= error %>
+        <% } %></h3>
+    	<div class="main_content">
+    		<h1>Public Spides<a class="no_style right link" href="/">Back</a></h1>
+            <h4>When opening public Spides, leave 'theKey' blank</h4>
+
+            <% if (typeof(pub_slides)!='undefined') { %>
+              <ul class="main_directory">
+                  <% if (pub_slides.length==0) { %>
+                    <h4>There are no public Slides now - <a class="link" href="/create"> Create</a></h4>
+                  <% } else { %>
+                      <% pub_slides.forEach(function(slide){ %>
+                        <li>
+                            <h4><a class="link" href="/show/<%= slide.id %>"><%= slide.name %></a></h4>
+                        </li>
+                      <% }) %>
+        		    
+                  <% } %>
+              </ul>
+            <% } %>
+		</div>
+    </body>
+    <script type="text/javascript" src="/javascripts/global.js"></script>
+
+</html>
