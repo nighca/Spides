@@ -1,0 +1,48 @@
+<html>
+	<head>
+    	<title><%= title %></title>
+		<link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+		<link href="/stylesheets/spides.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="/javascripts/add-on/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="/javascripts/add-on/jquery.transit.js"></script>
+	</head>
+	<body>
+		<div class="fly">
+			<ul>
+				<li><a href="/">Home</a></li>
+			</ul>
+			
+		</div>
+		<window>
+			<world>
+			<div style="position:relative">
+				<% spide.slides.forEach(function(slide){ %>
+				    <slide index="<%= slide.index %>" px="<%= slide.px %>" py="<%= slide.py %>" psize="<%= slide.psize %>" protation="<%= slide.protation %>" ptype="<%= slide.ptype %>">
+						<ptitle>
+							<%= slide.ptitle %>
+						</ptitle>
+						<% if (slide.ptip) { %>
+						<ptip>
+							<%= slide.ptip %>
+						</ptip>
+						<% } %>
+						<% if (slide.pparagraph) { %>
+						<pparagraph>
+							<%= slide.pparagraph %>
+						</pparagraph>
+						<% } %>
+					</slide>
+				<% }) %>
+			</div>
+			</world>
+		</window>
+	</body>
+	<script type="text/javascript" src="/javascripts/spide/model/slide.js"></script>
+	<script type="text/javascript" src="/javascripts/spide/model/world.js"></script>
+	<script type="text/javascript" src="/javascripts/spide/model/window.js"></script>
+	<script type="text/javascript" src="/javascripts/spide/model/view.js"></script>
+
+	<script type="text/javascript" src="/javascripts/spide/config.js"></script>
+	<script type="text/javascript" src="/javascripts/spide/main.js"></script>
+</html>
