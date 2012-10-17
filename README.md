@@ -14,7 +14,7 @@ With writing simple html to create elegant slides.
 
  * 服务端
  
-   node.js + express + ejs
+   node.js + express + ejs + mysql
 
  * 浏览器端
    
@@ -25,18 +25,10 @@ With writing simple html to create elegant slides.
 
  * 需安装node.js
 
- * 需安装express.js(web服务框架), ejs(模板引擎)
-
- * 需安装mysql module
- 
-   $ npm install mysql
-
 运行方法
 ----
    
    / 目录下
-   
-   $ npm install
    
    $ node app.js
 
