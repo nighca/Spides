@@ -1,10 +1,21 @@
 var _mysql = require('mysql');
 
-var HOST = 'localhost';
-var PORT = 3306;
-var MYSQL_USER = 'root';
-var MYSQL_PASS = '';
-var DATABASE = 'Spides';
+if(process.env.VCAP_SERVICES){
+	var env = JSON.parse(process.env.VCAP_SERVICES);
+	var db_info = env["mysql-5.1"][0]["credentials"];
+	var HOST = db_info["host"];
+	var PORT = db_info["port"];
+	var MYSQL_USER = db_info["username"];
+	var MYSQL_PASS = db_info["password"];
+	var DATABASE = db_info["name"];
+}else{
+	var HOST = 'localhost';
+	var PORT = 3306;
+	var MYSQL_USER = 'root';
+	var MYSQL_PASS = '';
+	var DATABASE = 'Spides';
+}
+
 var TABLE = 'spides';
 
 var mysql = _mysql.createClient({
@@ -14,6 +25,17 @@ var mysql = _mysql.createClient({
     password: MYSQL_PASS,
 });
 
+mysql.query('use ' + DATABASE);
+mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(4000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
+	    if(err){
+	    	console.log("When create table: ", err);
+	    }else{
+	    	console.log("Table created.");
+	    }
+	});
+//mysql.query('truncate ' + TABLE);
+
+/*
 var init = function(){
 	mysql.query('create database ' + DATABASE + ';');
 	mysql.query('use Spides;');
@@ -25,12 +47,11 @@ mysql.query('use ' + DATABASE, function(err, results, fields){
 		init();
     }
 });
+*/
 
 
 
 exports.insert = function(content, name, theKey, callback){
-	mysql.query('use ' + DATABASE);
-
 	content = escape(content);
 	mysql.query('insert into ' + 
 		TABLE +
@@ -50,8 +71,6 @@ exports.insert = function(content, name, theKey, callback){
 };
 
 exports.get_name = function(id, callback){
-	mysql.query('use ' + DATABASE);
-
 	mysql.query('select name from ' + TABLE + ' where id=' + id,
 		function(err, results, fields) {
 		    if (err){
@@ -69,8 +88,6 @@ exports.get_name = function(id, callback){
 }
 
 exports.get = function(id, theKey, callback){
-	mysql.query('use ' + DATABASE);
-
 	mysql.query('select * from ' + TABLE + ' where id=' + id,
 		function(err, results, fields) {
 		    if (err){
@@ -91,8 +108,6 @@ exports.get = function(id, theKey, callback){
 }
 
 exports.get_public = function(callback){
-	mysql.query('use ' + DATABASE);
-
 	mysql.query('select * from ' + TABLE + ' where theKey=""',
 		function(err, results, fields) {
 		    if (err){
