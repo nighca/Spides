@@ -37,12 +37,17 @@ app.get('/', routes.index);
 app.get('/docs', routes.docs);
 app.get('/public', spide.list);
 
-app.get('/show/', spide.verify);
+app.get('/show', spide.verify);
 app.get('/show/:id', spide.verify);
-app.post('/show/:id', spide.show);
+app.post('/show', spide.show);
 
 app.get('/create', spide.new);
 app.post('/create', spide.create);
+
+app.get('/edit', spide.verify);
+app.get('/edit/:id', spide.verify);
+app.post('/edit', spide.edit);
+app.post('/update', spide.update);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

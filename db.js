@@ -28,7 +28,7 @@ var mysql = _mysql.createClient({
 mysql.query('use ' + DATABASE);
 mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(4000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
 	    if(err){
-	    	console.log("When create table: ", err);
+	    	//console.log("When create table: ", err);
 	    }else{
 	    	console.log("Table created.");
 	    }
@@ -85,7 +85,7 @@ exports.get_name = function(id, callback){
 		    	}
 		    }
 		});
-}
+};
 
 exports.get = function(id, theKey, callback){
 	mysql.query('select * from ' + TABLE + ' where id=' + id,
@@ -105,7 +105,7 @@ exports.get = function(id, theKey, callback){
 		    	}
 		    }
 		});
-}
+};
 
 exports.get_public = function(callback){
 	mysql.query('select * from ' + TABLE + ' where theKey=""',
@@ -116,4 +116,21 @@ exports.get_public = function(callback){
 		        callback.succeed(results);
 		    }
 		});
-}
+};
+
+exports.update = function(id, content, name, theKey, callback){
+	content = escape(content);
+
+	mysql.query('update ' + TABLE + 
+		' set content="' + content + 
+		'", name="' + name + 
+		'", theKey="' + theKey + 
+		'" where id=' + id,function(err, results, fields) {
+		    if(err){
+		    	callback.fail(err);
+		    }else{
+		    	callback.succeed(results.message);
+		    }
+		});
+
+};

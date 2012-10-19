@@ -246,8 +246,15 @@ ul.inline li{
 	border-radius: 2px;
 
 	border: 1px solid @input_border_color;
+	text-decoration: none;
 
 	cursor: pointer;
+
+	&.disabled{
+		border-color: transparent;
+		color: @base_color;
+		padding-left: 0;
+	}
 }
 .btn:hover, input[type="submit"]:hover{
 	border-color: @highlight_color;
@@ -288,19 +295,21 @@ ul.inline li{
 
 .message_block, .error_block{
 	display: none;
-	position: absolute;
-	width: 80%;
+	position: fixed;
+	width: 100%;
 	padding: 10px;
-	top: 40%;
-	left: 10%;
+	top: 0;
 
-	border: 1px dashed @border_color;
+	margin: 0;
+
+	border-bottom: 1px dashed @border_color;
 	background-color: @background_color;
+	text-align: center;
 
 	z-index: 102;
 }
 .error_block{
-	border: 2px solid #C75D6E;
+	border-color: #C75D6E;
 	color: #C75D6E;
 }
 
@@ -376,6 +385,10 @@ footer{
 
 	li{
 		margin: 20px 0;
+		
+		&:hover{
+			color: #000;
+		}
 	}
 }
 
@@ -390,7 +403,18 @@ footer{
 .public{
 	.main_directory{
 		.typical_main_directory;
+
+		li{
+
+			.link{
+				&.right{
+					margin-left: 10px;
+				}
+			}
+		}
 	}
+
+
 }
 
 /*----------------------------------- verify -----------------------------*/
