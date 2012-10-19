@@ -8,14 +8,15 @@
     </head>
 
     <body>
+      <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
+        <%= error %>
+      <% } %></h3>
     	<div class="main_content">
-        <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
-          <%= error %>
-        <% } %></h3>
+        
     		<h1>Spide Creator<a class="no_style right link" href="/">Back</a></h1>
 		    <form action="/create" method="post" class="typical_form">
 		    	<div class="input_block">
-				    <input type="text" name="name" class="input_large" placeholder="Spide的名字" />
+				    <input type="text" name="name" class="input_large" placeholder="Spide的名字" value="<%= (typeof(name)!='undefined' ? name : "") %>" />
 				</div>
 		    	<div class="input_block">
 			    	<textarea name="content" placeholder="Input content of the spide here with JSON.">
@@ -60,7 +61,8 @@
       "img":{
         "src": "http://m3.img.libdd.com/farm2/70/042115C40F942E2AC3F3333F00757346_440_551.JPEG",
         "width": "30%",
-        "height": "50%"
+        "height": "50%",
+        "align": "right"
       }
     },
     {

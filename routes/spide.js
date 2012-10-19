@@ -20,16 +20,18 @@ exports.list = function(req, res){
 };
 
 exports.verify = function(req, res){
+	var target = req.path.split("/")[1];
+	
 	if(!req.params.id){
-		res.render('verify', { title: 'Verify - Spides', id: "", name: null});
+		res.render('verify', { title: 'Verify - Spides', target: target});
 	}else{
 		var id = req.params.id;
 		var callback = {
 			fail: function(err){
-				res.send(err);
+				res.render('verify', { title: 'Verify - Spides', target: target, error: err});
 			},
 			succeed: function(name){
-				res.render('verify', { title: 'Verify - Spides', id: id, name: name});
+				res.render('verify', { title: 'Verify - Spides', target: target, id: id, name: name});
 			}
 		};
 
@@ -39,12 +41,11 @@ exports.verify = function(req, res){
 
 exports.show = function(req, res){
 	var id = req.body.id;
-
 	var theKey = req.body.theKey;
 
 	var callback = {
 		fail: function(err){
-			res.send(err);
+			res.render('verify', { title: 'Verify - Spides', target: "show", error: err});
 		},
 		succeed: function(content, name){
 			spide = dealJSON.stringToJSON(content);
@@ -67,15 +68,16 @@ exports.create = function(req, res){
 	try{
     	eval("var temp=" + content);
     } catch(exception) {
-    	console.log(content);
-    	console.log(exception);
-    	res.render('new', { title: 'New - Spides', error: "json语法错误 - "+exception, content:content});
+    	//console.log(content);
+    	//console.log(exception);
+
+    	res.render('new', { title: 'New - Spides', error: "json语法错误 - "+exception, content:content, name: name});
     	return;
     }
 
 	var callback = {
 		fail: function(err){
-			res.send(err);
+    		res.render('new', { title: 'New - Spides', error: err, content:content,  name: name});
 		},
 		succeed: function(id){
 			res.redirect('/show/'+id);
@@ -83,6 +85,50 @@ exports.create = function(req, res){
 	};
 
 	db.insert(content, name, theKey, callback);
+};
+
+exports.edit = function(req, res){
+	var id = req.body.id;
+	var theKey = req.body.theKey;
+
+	var callback = {
+		fail: function(err){
+			res.render('verify', { title: 'Verify - Spides', target: "edit", error: err});
+		},
+		succeed: function(content, name){
+			res.render('edit', { title: name + ' - Spide', id: id, content: content, name: name, theKey: theKey });
+		}
+	};
+
+	db.get(id, theKey, callback);
+};
+
+exports.update = function(req, res){
+	var id = req.body.id;
+	var content = req.body.content;
+	var theKey = req.body.theKey;
+	var name = req.body.name;
+
+	try{
+    	eval("var temp=" + content);
+    } catch(exception) {
+    	//console.log(content);
+    	//console.log(exception);
+
+		res.render('edit', { title: name + ' - Spide', error: "json语法错误 - "+exception, id: id, content: content, name: name, theKey: theKey });
+    	return;
+    }
+
+	var callback = {
+		fail: function(err){
+			res.render('edit', { title: name + ' - Spide', error: err, id: id, content: content, name: name, theKey: theKey });
+		},
+		succeed: function(message){
+			res.redirect('/show/'+id);
+		}
+	};
+
+	db.update(id, content, name, theKey, callback);
 };
 
 
