@@ -15,7 +15,7 @@
     		<h1>Spide Creator<a class="no_style right link" href="/">Back</a></h1>
 		    <form action="/create" method="post" class="typical_form">
 		    	<div class="input_block">
-				    <input type="text" name="name" class="input_large" placeholder="Slide的名字" />
+				    <input type="text" name="name" class="input_large" placeholder="Spide的名字" />
 				</div>
 		    	<div class="input_block">
 			    	<textarea name="content" placeholder="Input content of the spide here with JSON.">
@@ -31,7 +31,7 @@
       "psize":20,
       "protation":0,
       "ptype":1,
-      "ptitle":"This is an example."
+      "ptitle":"An example."
     },
     {
       "index":2,
@@ -41,7 +41,9 @@
       "protation":120,
       "ptype":2,
       "ptitle":"Title of slide 2",
-      "pparagraph":"Here is the main content."
+      "pparagraph":[
+        "Here is the main content."
+      ]
     },
     {
       "index":3,
@@ -52,7 +54,14 @@
       "ptype":3,
       "ptitle":"Title of slide 3",
       "ptip":"Here is the tip.",
-      "pparagraph":"Here is the main content."
+      "pparagraph":[
+        "This is a Spide created by the default content."
+      ],
+      "img":{
+        "src": "http://m3.img.libdd.com/farm2/70/042115C40F942E2AC3F3333F00757346_440_551.JPEG",
+        "width": "30%",
+        "height": "50%"
+      }
     },
     {
       "index":4,
