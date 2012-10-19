@@ -40,7 +40,7 @@ ul.inline li{display:inline-block;}
 .alert>button{border:none;color:inherit;}
 .alert-error{border-color:#f39d9d;color:#f07979;}
 .btn,input[type="submit"],textarea{padding:7px 1em;}
-.btn,input[type="submit"]{margin:0;display:inline-block;line-height:1.2em;font-weight:bold;color:inherit;border-radius:2px;border:1px solid #aaaaaa;text-decoration:none;cursor:pointer;}.btn.disabled,input[type="submit"].disabled{border-color:transparent;color:#cdcfcf;padding-left:0;}
+.btn,input[type="submit"]{margin:0;display:inline-block;line-height:1.2em;font-weight:bold;color:inherit;border-radius:2px;border:1px solid #aaaaaa;text-decoration:none;cursor:pointer;}.btn.disabled,input[type="submit"].disabled{border-color:transparent;color:#cdcfcf;}
 .btn:hover,input[type="submit"]:hover{border-color:#0391c9;background-color:#0391c9;color:#ffffff;}
 .btn_stress,input[type="submit"].btn_stress{border:1px solid #00a0de;background-color:#00a0de;color:#ffffff;}
 .btn_stress:hover,input[type="submit"].btn_stress:hover{background-color:#0391c9;}
