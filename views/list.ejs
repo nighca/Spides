@@ -23,7 +23,11 @@
                   <% } else { %>
                       <% pub_slides.forEach(function(slide){ %>
                         <li>
-                            <h4><a class="link" href="/show/<%= slide.id %>"><%= slide.name %></a></h4>
+                            <h4>
+                              <%= slide.name %>
+                              <a class="link right" href="/show/<%= slide.id %>">Show</a>
+                              <a class="link right" href="/edit/<%= slide.id %>">Edit</a>
+                            </h4>
                         </li>
                       <% }) %>
         		    
