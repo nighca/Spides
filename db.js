@@ -100,7 +100,7 @@ exports.get = function(id, theKey, callback){
 			        if(theKey == col.theKey){
 			        	callback.succeed(unescape(col.content), col.name);
 			        }else{
-			        	callback.fail("Failed, Wrong Key!");
+			        	callback.fail("Failed, theKey wrong!");
 			        }
 		    	}
 		    }
@@ -109,6 +109,17 @@ exports.get = function(id, theKey, callback){
 
 exports.get_public = function(callback){
 	mysql.query('select * from ' + TABLE + ' where theKey=""',
+		function(err, results, fields) {
+		    if (err){
+		    	callback.fail(err);
+		    }else {
+		        callback.succeed(results);
+		    }
+		});
+};
+
+exports.get_all = function(callback){
+	mysql.query('select * from ' + TABLE,
 		function(err, results, fields) {
 		    if (err){
 		    	callback.fail(err);
@@ -132,5 +143,16 @@ exports.update = function(id, content, name, theKey, callback){
 		    	callback.succeed(results.message);
 		    }
 		});
+};
 
+exports.delete = function(id, theKey, callback){
+	console.log('delete from ' + TABLE + ' where id=' + id +' and theKey="' + theKey +'"');
+	mysql.query('delete from ' + TABLE + ' where id=' + id +' and theKey="' + theKey +'"',
+		function(err, results, fields) {
+		    if (err){
+		    	callback.fail(err);
+		    }else {
+		    	callback.succeed();
+		    }
+		});
 };

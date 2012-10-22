@@ -66,3 +66,6 @@ footer{position:fixed;z-index:101;bottom:0;width:100%;padding:15px 0;background-
 .public .main_directory li .link.right{margin-left:10px;}
 .verify .typical_form{margin-top:40px;}
 .docs .main_directory{margin-top:40px;list-style-type:square;}.docs .main_directory li{margin:20px 0;}.docs .main_directory li:hover{color:#000;}
+.admin_list .main_directory{margin-top:40px;list-style-type:square;}.admin_list .main_directory li{margin:20px 0;}.admin_list .main_directory li:hover{color:#000;}
+.admin_list .main_directory li .link.right{margin-left:10px;}
+.admin_list .main_directory li form{display:inline-block;margin-left:10px;}.admin_list .main_directory li form input[type="submit"]{border:none;background-color:transparent;padding:0;text-decoration:underline;}.admin_list .main_directory li form input[type="submit"]:hover{color:#0391c9;border:none;background-color:transparent;}

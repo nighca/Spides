@@ -6,17 +6,42 @@
 var dealJSON = require('../dealJSON');
 var db = require('../db.js');
 
+var adminKey = process.env.ADMINKEY || '123456';
+
 exports.list = function(req, res){
 	var callback = {
 		fail: function(err){
 			res.render('list', { title: 'Public - Spides', error: err});
 		},
-		succeed: function(pub_slides){
-			res.render('list', { title: 'Public - Spides', pub_slides: pub_slides});
+		succeed: function(slides){
+			res.render('list', { title: 'Public - Spides', slides: slides});
 		}
 	};
 
 	db.get_public(callback);
+};
+
+exports.admin_verify = function(req, res){
+	res.render('admin_verify', { title: 'Admin - Spides'});
+};
+
+exports.admin_list = function(req, res){
+	var Key = req.body.adminKey;
+
+	if(Key != adminKey){
+		res.render('admin_verify', {title: 'Admin - Spides', error: "Wrong Key!"});
+	}else{
+		var callback = {
+			fail: function(err){
+				res.render('admin_list', { title: 'Admin - Spides', error: err});
+			},
+			succeed: function(slides){
+				res.render('admin_list', { title: 'Admin - Spides', slides: slides});
+			}
+		};
+
+		db.get_all(callback);
+	}
 };
 
 exports.verify = function(req, res){
@@ -129,6 +154,42 @@ exports.update = function(req, res){
 	};
 
 	db.update(id, content, name, theKey, callback);
+};
+
+exports.delete = function(req, res){
+	var isAjax = req.body.isAjax;
+	if(isAjax){
+		console.log("ajax");
+		var id = req.body.id;
+		var theKey = req.body.theKey;
+
+		var callback = {
+			fail: function(err){
+				console.log(id, theKey, "fail");
+				res.json({message: 'fail'});
+			},
+			succeed: function(){
+				console.log(id, theKey, "succeed");
+				res.json({message: 'succeed'});
+			}
+		};
+
+		db.delete(id, theKey, callback);
+	}else{
+		var id = req.body.id;
+		var theKey = req.body.theKey;
+
+		var callback = {
+			fail: function(err){
+				res.redirect('/admin')
+			},
+			succeed: function(){
+				res.render('admin_list', { title: 'Admin - Spides' });
+			}
+		};
+
+		db.delete(id, theKey, callback);
+	}
 };
 
 

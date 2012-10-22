@@ -49,6 +49,11 @@ app.get('/edit/:id', spide.verify);
 app.post('/edit', spide.edit);
 app.post('/update', spide.update);
 
+app.post('/delete', spide.delete);
+
+app.get('/admin', spide.admin_verify);
+app.post('/admin', spide.admin_list);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
