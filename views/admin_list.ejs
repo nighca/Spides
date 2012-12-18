@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title><%= title %></title>
+    	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    	<link rel='stylesheet' href='/stylesheets/global.css' />
+
+        <script type="text/javascript" src="/javascripts/add-on/jquery-1.7.2.min.js"></script>
+    </head>
+
+    <body class="admin_list">
+        <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
+          <%= error %>
+        <% } %></h3>
+    	<div class="main_content">
+    		<h1>Admin<a class="no_style right link" href="/">Home</a></h1>
+            <% if (typeof(slides)!='undefined') { %>
+              <ul class="main_directory">
+                  <% if (slides.length==0) { %>
+                    <h4>There are no Slides now - <a class="link" href="/create"> Create</a></h4>
+                  <% } else { %>
+                      <% slides.forEach(function(slide){ %>
+                        <li id="<%= slide.id %>" theKey="<%= slide.theKey %>">
+                            <h4>
+                              <%= slide.name %>
+                              <form action="/show" method="post" class="right">
+                                <input type="hidden" name="id" value="<%= slide.id %>">
+                                <input type="hidden" name="theKey" value="<%= slide.theKey %>">
+                                <input type="submit" class="link" value="Show">
+                              </form>
+                              <form action="/edit" method="post" class="right">
+                                <input type="hidden" name="id" value="<%= slide.id %>">
+                                <input type="hidden" name="theKey" value="<%= slide.theKey %>">
+                                <input type="submit" class="link" value="Edit">
+                              </form>
+                              <a class="link right delete" href="javascript:void();">Delete</a>
+                            </h4>
+                        </li>
+                      <% }) %>
+        		    
+                  <% } %>
+              </ul>
+            <% } %>
+		</div>
+    </body>
+    <script type="text/javascript" src="/javascripts/global.js"></script>
+    <script type="text/javascript" src="/javascripts/admin.js"></script>
+
+</html>
