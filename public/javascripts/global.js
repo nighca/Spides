@@ -1,6 +1,6 @@
 function show_error(){
 	if($('.error_block').text()!=""){
-		$('.error_block').show().delay(4000).fadeOut('normal');
+		$('.error_block').show().delay(2000).fadeOut('normal');
 	}
 }
 
