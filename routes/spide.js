@@ -73,6 +73,7 @@ exports.show = function(req, res){
 			res.render('verify', { title: 'Verify - Spides', target: "show", error: err});
 		},
 		succeed: function(content, name){
+			console.log(content.length);//-----
 			spide = dealJSON.stringToJSON(content);
 			res.render('spide', { title: name + ' - Spide', spide: spide });
 		}

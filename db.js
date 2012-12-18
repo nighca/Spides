@@ -25,10 +25,18 @@ var mysql = _mysql.createClient({
     password: MYSQL_PASS,
 });
 
-mysql.query('use ' + DATABASE);
-mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(4000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
+mysql.query('create database ' + DATABASE + ';', function(err, results, fields) {
 	    if(err){
-	    	//console.log("When create table: ", err);
+	    	console.log("When create database: ", err);
+	    }else{
+	    	console.log("Database created.");
+	    }
+	});
+mysql.query('use ' + DATABASE);
+//mysql.query('drop table ' + TABLE);
+mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(8000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
+	    if(err){
+	    	console.log("When create table: ", err);
 	    }else{
 	    	console.log("Table created.");
 	    }
