@@ -8,14 +8,15 @@
     </head>
 
     <body>
+      <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
+        <%= error %>
+      <% } %></h3>
     	<div class="main_content">
-        <h3 class="error_block"><% if (typeof(error)!='undefined') { %>
-          <%= error %>
-        <% } %></h3>
+        
     		<h1>Spide Creator<a class="no_style right link" href="/">Back</a></h1>
 		    <form action="/create" method="post" class="typical_form">
 		    	<div class="input_block">
-				    <input type="text" name="name" class="input_large" placeholder="Slide的名字" />
+				    <input type="text" name="name" class="input_large" placeholder="Spide的名字" value="<%= (typeof(name)!='undefined' ? name : "") %>" />
 				</div>
 		    	<div class="input_block">
 			    	<textarea name="content" placeholder="Input content of the spide here with JSON.">
@@ -31,35 +32,86 @@
       "psize":20,
       "protation":0,
       "ptype":1,
-      "ptitle":"This is an example."
+      "ptitle":"A sample Spide"
     },
     {
       "index":2,
-      "px":600,
-      "py":600,
-      "psize":80,
-      "protation":120,
+      "px":800,
+      "py":40,
+      "psize":4,
+      "protation":30,
       "ptype":2,
-      "ptitle":"Title of slide 2",
-      "pparagraph":"Here is the main content."
+      "ptitle":"A Spide may be simple",
+      "pparagraph":[
+        "One title and one paragraph is enough sometimes."
+      ]
     },
     {
       "index":3,
-      "px":1000,
-      "py":1600,
-      "psize":40,
-      "protation":20,
-      "ptype":3,
-      "ptitle":"Title of slide 3",
-      "ptip":"Here is the tip.",
-      "pparagraph":"Here is the main content."
+      "px":1600,
+      "py":200,
+      "psize":20,
+      "protation":70,
+      "ptype":2,
+      "ptitle":"We may have images",
+      "pparagraph":[
+        "And some description for the image."
+      ],
+      "img":{
+        "src": "http://m3.img.libdd.com/farm2/70/042115C40F942E2AC3F3333F00757346_440_551.JPEG",
+        "width": "30%",
+        "height": "50%",
+        "align": "right"
+      }
     },
     {
       "index":4,
       "px":2000,
-      "py":1200,
-      "psize":60,
-      "protation":160,
+      "py":700,
+      "psize":20,
+      "protation":120,
+      "ptype":3,
+      "ptitle":"Images may stand left",
+      "pparagraph":[
+        "This is a image asigned to left."
+      ],
+      "img":{
+        "src": "http://m3.img.libdd.com/farm2/70/042115C40F942E2AC3F3333F00757346_440_551.JPEG",
+        "width": "30%",
+        "height": "50%",
+        "align": "left"
+      }
+    },
+    {
+      "index":5,
+      "px":2600,
+      "py":900,
+      "psize":4,
+      "protation":180,
+      "ptype":3,
+      "ptitle":"We have tip here ->",
+      "ptip":"Here is the tip.",
+      "pparagraph":[
+        "And several paragraphes..",
+        "If you find that only one is not enough.",
+        "As many as you want."
+      ]
+    },
+    {
+      "index":6,
+      "px":3000,
+      "py":1000,
+      "psize":40,
+      "protation":240,
+      "ptype":1,
+      "ptitle":"End page like this:"
+    },
+    {
+      "index":7,
+      "px":2000,
+      "py":1500,
+      "psize":4,
+      "protation":300,
       "ptype":0,
       "ptitle":"The End"
     }

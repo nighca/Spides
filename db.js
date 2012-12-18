@@ -25,14 +25,23 @@ var mysql = _mysql.createClient({
     password: MYSQL_PASS,
 });
 
+mysql.query('create database ' + DATABASE + ';', function(err, results, fields) {
+	    if(err){
+	    	console.log("When create database: ", err);
+	    }else{
+	    	console.log("Database created.");
+	    }
+	});
 mysql.query('use ' + DATABASE);
-mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(4000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
+//mysql.query('drop table ' + TABLE);
+mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(8000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
 	    if(err){
 	    	console.log("When create table: ", err);
 	    }else{
 	    	console.log("Table created.");
 	    }
 	});
+//mysql.query('truncate ' + TABLE);
 
 /*
 var init = function(){
@@ -84,7 +93,7 @@ exports.get_name = function(id, callback){
 		    	}
 		    }
 		});
-}
+};
 
 exports.get = function(id, theKey, callback){
 	mysql.query('select * from ' + TABLE + ' where id=' + id,
@@ -99,12 +108,12 @@ exports.get = function(id, theKey, callback){
 			        if(theKey == col.theKey){
 			        	callback.succeed(unescape(col.content), col.name);
 			        }else{
-			        	callback.fail("Failed, Wrong Key!");
+			        	callback.fail("Failed, theKey wrong!");
 			        }
 		    	}
 		    }
 		});
-}
+};
 
 exports.get_public = function(callback){
 	mysql.query('select * from ' + TABLE + ' where theKey=""',
@@ -115,4 +124,43 @@ exports.get_public = function(callback){
 		        callback.succeed(results);
 		    }
 		});
-}
+};
+
+exports.get_all = function(callback){
+	mysql.query('select * from ' + TABLE,
+		function(err, results, fields) {
+		    if (err){
+		    	callback.fail(err);
+		    }else {
+		        callback.succeed(results);
+		    }
+		});
+};
+
+exports.update = function(id, content, name, theKey, callback){
+	content = escape(content);
+
+	mysql.query('update ' + TABLE + 
+		' set content="' + content + 
+		'", name="' + name + 
+		'", theKey="' + theKey + 
+		'" where id=' + id,function(err, results, fields) {
+		    if(err){
+		    	callback.fail(err);
+		    }else{
+		    	callback.succeed(results.message);
+		    }
+		});
+};
+
+exports.delete = function(id, theKey, callback){
+	console.log('delete from ' + TABLE + ' where id=' + id +' and theKey="' + theKey +'"');
+	mysql.query('delete from ' + TABLE + ' where id=' + id +' and theKey="' + theKey +'"',
+		function(err, results, fields) {
+		    if (err){
+		    	callback.fail(err);
+		    }else {
+		    	callback.succeed();
+		    }
+		});
+};

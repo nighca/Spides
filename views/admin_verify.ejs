@@ -1,0 +1,27 @@
+<html>
+	<head>
+    	<title><%= title %></title>
+    	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    	<link rel='stylesheet' href='/stylesheets/global.css' />
+
+      <script type="text/javascript" src="/javascripts/add-on/jquery-1.7.2.min.js"></script>
+    </head>
+
+    <body class="verify">
+      <h4 class="error_block"><% if (typeof(error)!='undefined') { %>
+        <%= error %>
+      <% } %></h4>
+    	<div class="main_content">
+    		<h1>Admin<a class="no_style right link" href="/">Home</a></h1>
+        
+		    <form action="/admin" method="post" class="typical_form">
+		    	<div class="input_block">
+				    <input type="password" name="adminKey" class="input_large" placeholder="the key to get the Admin page" />
+				    <input type="submit" value="Submit" />
+				</div>
+		    </form>
+		</div>
+    </body>
+    <script type="text/javascript" src="/javascripts/global.js"></script>
+
+</html>

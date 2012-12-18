@@ -27,10 +27,17 @@
 							<%= slide.ptip %>
 						</ptip>
 						<% } %>
+						<% if (slide.img) { %>
+						<p style="text-align:<%= (slide.img.align || "center") %>">
+						<img src="<%= slide.img.src %>" style="width:<% if (slide.img.width) { %><%= slide.img.width %><% } %>;height:<% if (slide.img.height) { %><%= slide.img.height %><% } %>;" />	
+					</p>
+						<% } %>
 						<% if (slide.pparagraph) { %>
-						<pparagraph>
-							<%= slide.pparagraph %>
-						</pparagraph>
+							<% slide.pparagraph.forEach(function(pparagraph){ %>
+							<pparagraph>
+								<%= pparagraph %>
+							</pparagraph>
+							<% }) %>
 						<% } %>
 					</slide>
 				<% }) %>

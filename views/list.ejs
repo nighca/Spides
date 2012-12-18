@@ -16,14 +16,18 @@
     		<h1>Public Spides<a class="no_style right link" href="/">Back</a></h1>
             <h4>When opening public Spides, leave 'theKey' blank</h4>
 
-            <% if (typeof(pub_slides)!='undefined') { %>
+            <% if (typeof(slides)!='undefined') { %>
               <ul class="main_directory">
-                  <% if (pub_slides.length==0) { %>
+                  <% if (slides.length==0) { %>
                     <h4>There are no public Slides now - <a class="link" href="/create"> Create</a></h4>
                   <% } else { %>
-                      <% pub_slides.forEach(function(slide){ %>
+                      <% slides.forEach(function(slide){ %>
                         <li>
-                            <h4><a class="link" href="/show/<%= slide.id %>"><%= slide.name %></a></h4>
+                            <h4>
+                              <%= slide.name %>
+                              <a class="link right" href="/show/<%= slide.id %>">Show</a>
+                              <a class="link right" href="/edit/<%= slide.id %>">Edit</a>
+                            </h4>
                         </li>
                       <% }) %>
         		    
