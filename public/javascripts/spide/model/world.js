@@ -11,10 +11,9 @@ Theworld = function(_world_dom, _slides_dom, _unit, _xvy){
 		this.height = world_dom.height();
 
 		var slides = [];
-		slides_dom.each(function(){
-			var index = parseInt($(this).attr('index'));
+		slides_dom.each(function(index){
 			var temp_slide = new Slide($(this), unit, xvy);
-			slides[index] = temp_slide;
+			slides[index+1] = temp_slide;
 		});
 		this.slides = slides;
 		this.slides_num = slides.length - 1;

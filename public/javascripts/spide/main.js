@@ -55,14 +55,22 @@ $(function(){
 
 	hashWatcher.register(function(){
 		var index = get_index();
+		$("#slide_index").text(index);
 		the_view.show(index);
 	});
 
-	$(document).on('click', function(){
-		forward(the_view);
+	$("window").click(function(e){
+    	forward(the_view);
+	});
+	
+	$("#full").click(function(e){
+		if (screenfull.enabled) {
+	        screenfull.toggle();
+	    }
 	});
 
-	$(document).keyup(function(event) {
+
+	$("window").keyup(function(event) {
 		if ( event.which == 37 || event.which == 38 ) {
 			backward(the_view);
 		}else if ( event.which == 39 || event.which == 40 ) {

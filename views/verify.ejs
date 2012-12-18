@@ -13,14 +13,14 @@
       <% } %></h4>
     	<div class="main_content">
     		<h1>Verify<a class="no_style right link" href="/public">Public Spides</a></h1>
-        <% if (typeof(name)!='undefined') { %>
-          <h4>Please input theKey to <%= (typeof(target)!='undefined' ? target : "get") %> <strong> "<%= name %>" </strong></h4>
+        <% if (typeof sname !== "undefined") { %>
+          <h4>Please input theKey to <%= (typeof(target)!='undefined' ? target : "get") %> <strong> "<%= sname %>" </strong></h4>
         <% } else { %>
           <h4>Please input id and theKey to get your Spide.</h4>
         <% } %>
 		    <form action="/<%= (typeof(target)!='undefined' ? target : "show") %>" method="post" class="typical_form">
           <div class="input_block">
-            <% if (typeof(name)!='undefined') { %>
+            <% if (typeof sname !== "undefined") { %>
               <input type="hidden" name="id" class="input_large" placeholder="id of the Spide" value="<%= id %>" />
               <a href="/<%= (typeof(target)!='undefined' ? target : "show") %>" class="btn">Change a Spide</a>
             <% } else { %>

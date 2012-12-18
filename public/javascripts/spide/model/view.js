@@ -49,11 +49,11 @@ Theview = function(_xvy, _window_dom, _world_dom, _slides_dom, _unit, _duration)
 
 	this.show = function(i){
 
-		if(i > this.world.slides_num || i < 1){
+		var slide = this.world.slides[i];
+
+		if(!slide){
 			return false;
 		}
-
-		var slide = this.world.slides[i];
 
 		var zoom = this.width / slide.width;
 		var rotation = slide.protation;
