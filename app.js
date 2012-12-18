@@ -5,12 +5,9 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , spide = require('./routes/spide')
   , http = require('http')
   , path = require('path')
   , db = require('./db');
-
-//db.init();
 
 var app = express();
 
@@ -34,25 +31,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/docs', routes.docs);
-app.get('/public', spide.list);
-
-app.get('/show', spide.verify);
-app.get('/show/:id', spide.verify);
-app.post('/show', spide.show);
-
-app.get('/create', spide.new);
-app.post('/create', spide.create);
-
-app.get('/edit', spide.verify);
-app.get('/edit/:id', spide.verify);
-app.post('/edit', spide.edit);
-app.post('/update', spide.update);
-
-app.post('/delete', spide.delete);
-
-app.get('/admin', spide.admin_verify);
-app.post('/admin', spide.admin_list);
+app.post('/', routes.saveas);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
