@@ -74,7 +74,7 @@ exports.show = function(req, res){
 		},
 		succeed: function(content, name){
 			var spide = dealJSON.jsonToHtml(dealJSON.stringToJSON(content));
-			res.render('spide', { title: name + ' - Spide', spide: spide });
+			res.render('spide', { title: name + ' - Spide', id: id, spide: spide });
 		}
 	};
 

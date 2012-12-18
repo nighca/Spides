@@ -35,10 +35,10 @@
 		    	<div class="input_block">
 			    	<textarea id="content" name="content" placeholder="Input content of the spide here with JSON.">
 <% if (typeof(content)!='undefined') { %><%= content %><% } else { %>              
+              
 [
   {
     "tagName":"slide",
-    "index":1,
     "px":0,
     "py":0,
     "psize":20,
@@ -54,8 +54,7 @@
   },
   {
     "tagName":"slide",
-    "index":2,
-    "px":800,
+    "px":1600,
     "py":40,
     "psize":4,
     "protation":30,
@@ -73,33 +72,24 @@
   },
   {
     "tagName":"slide",
-    "index":3,
-    "px":1600,
+    "px":3000,
     "py":200,
     "psize":20,
     "protation":70,
     "ptype":2,
     "content":[
       {
-        "tagName":"ptitle",
-        "content":"We may have images"
-      },
-      {
-        "tagName":"pparagraph",
-        "content":"And some description for the image."
-      },
-      {
         "tagName":"img",
         "src": "http://m3.img.libdd.com/farm2/70/042115C40F942E2AC3F3333F00757346_440_551.JPEG",
-        "height": "30%",
+        "width":"100%",
+        "height": "100%",
         "align": "right"
       }
     ]
   },
   {
     "tagName":"slide",
-    "index":4,
-    "px":2600,
+    "px":4400,
     "py":900,
     "psize":4,
     "protation":180,
@@ -129,8 +119,7 @@
   },
   {
     "tagName":"slide",
-    "index":5,
-    "px":3000,
+    "px":6400,
     "py":1000,
     "psize":40,
     "protation":240,
@@ -144,8 +133,7 @@
   },
   {
     "tagName":"slide",
-    "index":6,
-    "px":2000,
+    "px":8000,
     "py":1500,
     "psize":4,
     "protation":300,
@@ -158,8 +146,6 @@
     ]
   }
 ]
-              
-
 <% } %>              
 			    	</textarea>
 			    </div>
