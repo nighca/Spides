@@ -27,7 +27,7 @@ var mysql = _mysql.createClient({
 
 mysql.query('create database ' + DATABASE + ';', function(err, results, fields) {
 	    if(err){
-	    	console.log("When create database: ", err);
+	    	//console.log("When create database: ", err);
 	    }else{
 	    	console.log("Database created.");
 	    }
@@ -36,28 +36,12 @@ mysql.query('use ' + DATABASE);
 //mysql.query('drop table ' + TABLE);
 mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(8000), name nvarchar(40), theKey varchar(20), primary key(id));', function(err, results, fields) {
 	    if(err){
-	    	console.log("When create table: ", err);
+	    	//console.log("When create table: ", err);
 	    }else{
 	    	console.log("Table created.");
 	    }
 	});
 //mysql.query('truncate ' + TABLE);
-
-/*
-var init = function(){
-	mysql.query('create database ' + DATABASE + ';');
-	mysql.query('use Spides;');
-	mysql.query('create table ' + TABLE + '(id int NOT NULL auto_increment, content nvarchar(4000), name nvarchar(40), theKey varchar(20), primary key(id));');
-};
-
-mysql.query('use ' + DATABASE, function(err, results, fields){
-	if(err){
-		init();
-    }
-});
-*/
-
-
 
 exports.insert = function(content, name, theKey, callback){
 	content = escape(content);

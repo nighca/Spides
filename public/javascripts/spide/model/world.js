@@ -1,3 +1,4 @@
+/*
 Theworld = function(_world_dom, _slides_dom, _unit, _xvy){
 	var unit = _unit;
 	var xvy = _xvy;
@@ -11,10 +12,9 @@ Theworld = function(_world_dom, _slides_dom, _unit, _xvy){
 		this.height = world_dom.height();
 
 		var slides = [];
-		slides_dom.each(function(){
-			var index = parseInt($(this).attr('index'));
+		slides_dom.each(function(index){
 			var temp_slide = new Slide($(this), unit, xvy);
-			slides[index] = temp_slide;
+			slides[index+1] = temp_slide;
 		});
 		this.slides = slides;
 		this.slides_num = slides.length - 1;
@@ -43,3 +43,38 @@ Theworld = function(_world_dom, _slides_dom, _unit, _xvy){
 
 	this.init();
 }
+*/
+
+function Theworld(dom, slides_dom, theme){
+	this.dom = dom;
+	this.config = theme.config;
+
+	this.dom.css(theme.config.world_style);
+
+	this.slides = function(){
+		var slides = [];
+
+		slides_dom.each(function(index){
+			var temp_slide = new Slide($(this), theme);
+			slides.push(temp_slide);
+		});
+
+		return {
+			get : function (index) {
+				return slides[index-1];
+			},
+			num : function () {
+				return slides.length;
+			}
+		};
+	}();
+	
+	theme.world_init(this);
+}
+
+Theworld.prototype.show = function(i){
+	this.slides.get(i).show();
+};
+Theworld.prototype.hide = function(i){
+	this.slides.get(i).hide();		
+};

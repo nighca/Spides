@@ -1,33 +1,42 @@
 exports.jsonToString = function(obj){  
-    var THIS = this;   
-    switch(typeof(obj)){  
-        case 'string':  
-            return '"' + obj.replace(/(["\\])/g, '\\$1') + '"';  
-        case 'array':  
-            return '[' + obj.map(THIS.jsonToString).join(',') + ']';  
-        case 'object':  
-             if(obj instanceof Array){  
-                var strArr = [];  
-                var len = obj.length;  
-                for(var i=0; i<len; i++){  
-                    strArr.push(THIS.jsonToString(obj[i]));  
-                }  
-                return '[' + strArr.join(',') + ']';  
-            }else if(obj==null){  
-                return 'null';  
-
-            }else{  
-                var string = [];  
-                for (var property in obj) string.push(THIS.jsonToString(property) + ':' + THIS.jsonToString(obj[property]));  
-                return '{' + string.join(',') + '}';  
-            }  
-        case 'number':  
-            return obj;  
-        case false:  
-            return obj;  
-    }  
+    return JSON.stringify(obj);
 };
 
-exports.stringToJSON = function(obj){  
-        return eval('(' + obj + ')');  
+exports.stringToJSON = function(str){  
+    return JSON.parse(str);  
 };
+
+function isArray(obj) {   
+  return Object.prototype.toString.call(obj) === '[object Array]';    
+}
+
+function parse(obj){
+    if(typeof obj !== "object"){
+        return obj.toString();
+    }
+
+    var result = '';
+
+    if(isArray(obj)){
+        for(var i=0;i<obj.length;i++){
+            result += parse(obj[i]);
+        }
+        return result;
+    }
+
+    result += '<' + (obj.tagName ? obj.tagName : 'div') + ' ';
+    for (var attrName in obj) {
+        if (attrName !== 'tagName' && attrName !== 'content') {
+            result += attrName + '="' + obj[attrName] + '" ';
+        }
+    }
+    result += '>\n';
+    result += obj.content ? parse(obj.content) : '';
+    result += '\n</' + (obj.tagName ? obj.tagName : 'div') + '>\n';
+
+    return result;
+}
+
+exports.jsonToHtml = function(obj){
+    return parse(obj);
+}

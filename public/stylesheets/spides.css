@@ -12,6 +12,9 @@
 .fly:hover {
   opacity: 1;
 }
+.fly .link {
+  cursor: pointer;
+}
 .fly ul {
   list-style: none;
   padding: 0;
@@ -19,15 +22,29 @@
 }
 .fly ul li {
   display: inline-block;
+  line-height: 40px;
 }
-.fly ul li a {
+.fly ul li * {
   display: inline-block;
   height: 40px;
-  line-height: 40px;
   padding: 0 10px;
-  text-decoration: none;
   font-weight: bold;
+  color: #f0f0f0;
+}
+.fly ul li a {
+  text-decoration: none;
+}
+.fly ul li a:hover {
   color: #fff;
+}
+.fly ul li span {
+  cursor: default;
+}
+.fly ul li #slide_index {
+  position: absolute;
+  left: -2em;
+  top: 0;
+  color: #333;
 }
 .tip {
   display: inline-block;
@@ -51,9 +68,6 @@
 }
 slide {
   display: block;
-  position: absolute;
-  border-radius: 1%;
-  opacity: 0.5;
 }
 slide a {
   text-decoration: none;

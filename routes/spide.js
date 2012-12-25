@@ -56,7 +56,7 @@ exports.verify = function(req, res){
 				res.render('verify', { title: 'Verify - Spides', target: target, error: err});
 			},
 			succeed: function(name){
-				res.render('verify', { title: 'Verify - Spides', target: target, id: id, name: name});
+				res.render('verify', { title: 'Verify - Spides', target: target, id: id, sname: name});
 			}
 		};
 
@@ -73,9 +73,8 @@ exports.show = function(req, res){
 			res.render('verify', { title: 'Verify - Spides', target: "show", error: err});
 		},
 		succeed: function(content, name){
-			console.log(content.length);//-----
-			spide = dealJSON.stringToJSON(content);
-			res.render('spide', { title: name + ' - Spide', spide: spide });
+			var spide = dealJSON.jsonToHtml(dealJSON.stringToJSON(content));
+			res.render('spide', { title: name + ' - Spide', id: id, spide: spide });
 		}
 	};
 
@@ -92,18 +91,18 @@ exports.create = function(req, res){
 	var name = req.body.name;
 
 	try{
-    	eval("var temp=" + content);
+    	JSON.parse(content);
     } catch(exception) {
     	//console.log(content);
     	//console.log(exception);
 
-    	res.render('new', { title: 'New - Spides', error: "json语法错误 - "+exception, content:content, name: name});
+    	res.render('new', { title: 'New - Spides', error: "json语法错误 - "+exception, content:content, sname: name});
     	return;
     }
 
 	var callback = {
 		fail: function(err){
-    		res.render('new', { title: 'New - Spides', error: err, content:content,  name: name});
+    		res.render('new', { title: 'New - Spides', error: err, content:content,  sname: name});
 		},
 		succeed: function(id){
 			res.redirect('/show/'+id);
@@ -136,7 +135,7 @@ exports.update = function(req, res){
 	var name = req.body.name;
 
 	try{
-    	eval("var temp=" + content);
+    	JSON.parse(content);
     } catch(exception) {
     	//console.log(content);
     	//console.log(exception);
