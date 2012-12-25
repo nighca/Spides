@@ -1,6 +1,8 @@
 Spides
 ======
 
+[![Build Status](https://travis-ci.org/nighca/Spides.png?branch=nighca)](https://travis-ci.org/nighca/Spides)
+
 It's a slide-tool based on Javascript &amp; HTML5.
 
 With writing simple html to create elegant slides.
