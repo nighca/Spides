@@ -12,7 +12,6 @@ function isArray(obj) {
 
 function parse(obj){
     if(typeof obj !== "object"){
-        console.log("*", obj);
         return obj.toString();
     }
 

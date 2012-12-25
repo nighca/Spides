@@ -1,3 +1,4 @@
+/*
 //get angle with (x,y) given ( 0-2PI)
 function get_angle(x, y){
 	var tan = y / x;
@@ -144,4 +145,52 @@ Theview = function(_xvy, _window_dom, _world_dom, _slides_dom, _unit, _duration)
 	};
 
 	this.init();
+};
+
+*/
+
+function Theview(window_dom, world_dom, slides_dom, theme){
+	this.config = theme.config;
+	this.index = 1;
+
+	this.window = new Thewindow(window_dom, theme);
+	this.world = new Theworld(world_dom, slides_dom, theme);
+
+	this.reset_size = function(){
+		this.window.reset_size();
+		if(this.window.width >= this.window.height*xvy){
+			this.layout = 0;//horizon
+			this.height = this.window.height;
+			this.width = this.height * xvy;
+		}else{
+			this.layout = 1;//vertical
+			this.width = this.window.width;
+			this.height = this.width / xvy;
+		}
+
+		this.show(this.index);
+	};
+
+	this.reset_size();
+	
+	theme.view_init(this);
+}
+
+Theview.prototype.show = function(i){
+
+	this.world.hide(this.index);
+	this.world.show(i);
+
+	this.index = i;
+
+	return true;
+};
+
+Theview.prototype.checkout = function(){
+	if(!this.show(this.index + 1)){
+		//console.log(this.index, " no more slide!");
+		this.index = 0;
+		this.show(this.index + 1);
+	}
+	return true;
 };

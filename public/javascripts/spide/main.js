@@ -32,7 +32,7 @@ function get_index(){
 
 function forward(the_view){
 	var index = get_index();
-	if(++index > the_view.world.slides_num){
+	if(++index > the_view.world.slides.num()){
 		index = 1;
 	}
 	window.location.hash = index;
@@ -41,13 +41,13 @@ function forward(the_view){
 function backward(the_view){
 	var index = get_index();
 	if(--index <= 0){
-		index = the_view.world.slides_num;
+		index = the_view.world.slides.num();
 	}
 	window.location.hash = index;
 }
 
-$(function(){
-	var the_view = new Theview(xvy, window_dom,  world_dom, slides_dom, unit, duration);
+//$(function(){
+	var the_view = new Theview($("window"),  $("world"), $("slide"), theme);
 
 	$(window).resize(function(){
 		the_view.reset_size();
@@ -62,6 +62,14 @@ $(function(){
 	$("window").click(function(e){
     	forward(the_view);
 	});
+
+	$(document).keyup(function(event) {
+		if ( event.which == 37 || event.which == 38 ) {
+			backward(the_view);
+		}else if ( event.which == 39 || event.which == 40 ) {
+			forward(the_view);
+		}
+	});
 	
 	$("#full").click(function(e){
 		if (screenfull.enabled) {
@@ -70,11 +78,5 @@ $(function(){
 	});
 
 
-	$("window").keyup(function(event) {
-		if ( event.which == 37 || event.which == 38 ) {
-			backward(the_view);
-		}else if ( event.which == 39 || event.which == 40 ) {
-			forward(the_view);
-		}
-	});
-});
+
+//});
