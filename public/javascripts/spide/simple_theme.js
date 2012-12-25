@@ -1,5 +1,6 @@
 var theme = {
 	"config" : {
+		"xvy" : 4/3,
 		"window_style":{
 			padding: "2%",
 		},

@@ -153,11 +153,13 @@ function Theview(window_dom, world_dom, slides_dom, theme){
 	this.config = theme.config;
 	this.index = 1;
 
-	this.window = new Thewindow(window_dom, theme);
+	this.window = new Thewindow(window_dom, slides_dom, theme);
 	this.world = new Theworld(world_dom, slides_dom, theme);
 
 	this.reset_size = function(){
 		this.window.reset_size();
+
+		var xvy = this.config.xvy;
 		if(this.window.width >= this.window.height*xvy){
 			this.layout = 0;//horizon
 			this.height = this.window.height;

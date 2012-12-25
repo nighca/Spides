@@ -25,12 +25,13 @@ Thewindow = function(_window_dom){
 };
 */
 
-function Thewindow(dom, theme){
+function Thewindow(dom, slides_dom, theme){
 	this.dom = dom;
 	this.config = theme.config;
 
 	this.dom.css(theme.config.window_style);
 
+/*
 	this.slides = function(){
 		var slides = [];
 
@@ -48,6 +49,7 @@ function Thewindow(dom, theme){
 			}
 		};
 	}();
+	*/
 
 	this.reset_size = function(){
 		this.width = this.dom.width();
@@ -62,10 +64,11 @@ function Thewindow(dom, theme){
 
 	theme.window_init(this);
 }
-
+/*
 Thewindow.prototype.show = function(i){
 	this.slides.get(i).show();
 };
 Thewindow.prototype.hide = function(i){
 	this.slides.get(i).hide();		
 };
+*/
