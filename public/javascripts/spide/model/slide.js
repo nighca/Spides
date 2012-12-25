@@ -1,3 +1,4 @@
+/*
 Slide = function(_slide_dom, _unit, _xvy){
 	var height_unit = _unit;
 	var width_unit = _unit * _xvy;
@@ -36,4 +37,23 @@ Slide = function(_slide_dom, _unit, _xvy){
 	};
 
 	this.init();
+};
+
+*/
+
+function Slide(dom, theme){
+	this.dom = dom;
+	this.config = theme.config;
+
+	this.dom.css(theme.config.slide_style);
+	
+	theme.slide_init(this);
+}
+
+Slide.prototype.show = function(){
+	this.dom.show();
+};
+
+Slide.prototype.hide = function(){
+	this.dom.hide();
 };

@@ -6,50 +6,32 @@
 
 		<script type="text/javascript" src="/javascripts/add-on/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="/javascripts/add-on/jquery.transit.js"></script>
+		<script type="text/javascript" src="/javascripts/add-on/screenfull.js"></script>
 	</head>
 	<body>
 		<div class="fly">
 			<ul>
-				<li><a href="/">Home</a></li>
+				<li><span id="slide_index">1</span></li>
+				<li><a href="/" title="Back to Home">Home</a></li>
+				<li><a href="/edit/<%= id %>" title="Back to Home">Edit</a></li>
+				<li><span id="full" class="link" title="Full Screen">+</span></li>
 			</ul>
 			
 		</div>
 		<window>
 			<world>
 			<div style="position:relative">
-				<% spide.slides.forEach(function(slide){ %>
-				    <slide index="<%= slide.index %>" px="<%= slide.px %>" py="<%= slide.py %>" psize="<%= slide.psize %>" protation="<%= slide.protation %>" ptype="<%= slide.ptype %>">
-						<ptitle>
-							<%= slide.ptitle %>
-						</ptitle>
-						<% if (slide.ptip) { %>
-						<ptip>
-							<%= slide.ptip %>
-						</ptip>
-						<% } %>
-						<% if (slide.img) { %>
-						<p style="text-align:<%= (slide.img.align || "center") %>">
-						<img src="<%= slide.img.src %>" style="width:<% if (slide.img.width) { %><%= slide.img.width %><% } %>;height:<% if (slide.img.height) { %><%= slide.img.height %><% } %>;" />	
-					</p>
-						<% } %>
-						<% if (slide.pparagraph) { %>
-							<% slide.pparagraph.forEach(function(pparagraph){ %>
-							<pparagraph>
-								<%= pparagraph %>
-							</pparagraph>
-							<% }) %>
-						<% } %>
-					</slide>
-				<% }) %>
+				<%- spide %>
 			</div>
 			</world>
 		</window>
 	</body>
-	<script type="text/javascript" src="/javascripts/spide/model/slide.js"></script>
-	<script type="text/javascript" src="/javascripts/spide/model/world.js"></script>
-	<script type="text/javascript" src="/javascripts/spide/model/window.js"></script>
-	<script type="text/javascript" src="/javascripts/spide/model/view.js"></script>
+	<script type="text/javascript" src="./javascripts/spide/theme.js"></script>
 
-	<script type="text/javascript" src="/javascripts/spide/config.js"></script>
-	<script type="text/javascript" src="/javascripts/spide/main.js"></script>
+	<script type="text/javascript" src="./javascripts/spide/model/slide.js"></script>
+	<script type="text/javascript" src="./javascripts/spide/model/world.js"></script>
+	<script type="text/javascript" src="./javascripts/spide/model/window.js"></script>
+	<script type="text/javascript" src="./javascripts/spide/model/view.js"></script>
+
+	<script type="text/javascript" src="./javascripts/spide/main.js"></script>
 </html>
